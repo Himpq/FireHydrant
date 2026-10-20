@@ -1,0 +1,43 @@
+# Python / tooling
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+
+# Local run artifacts (never commit camera-fetched evidence)
+*.prev
+*.trace
+*.result
+backup_live.bin
+colors_before.private.bin
+colors_after.private.bin
+colors_stored.private.bin
+*_result.txt
+cpload_result.txt
+cpload2_result.txt
+cpload2t_result.txt
+cpload3_result.txt
+caprobe_result.txt
+rampatch_result.txt
+rampatch.result
+uiprobe_result.txt
+dscan_result.txt
+
+# Firmware images, patch payloads and tools (never publish)
+fl2_fl3/backups/
+fl2_fl3/ref_pass2/
+fl2_fl3/toolkit/
+fl2_fl3/native/
+fl2_fl3/*.bin
+fl2_fl3/*.so
+fl2_fl3/*.delta
+fl2_fl3/*.py
+fl2_fl3/*.h
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
