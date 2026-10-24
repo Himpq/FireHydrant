@@ -10,9 +10,8 @@ expose the four file commands the WBI tools need:
     17  read
     18  remove
 
-It deliberately has no code for flash partitions or firmware images: the only
-paths it will touch are names inside /tmp/jiritsu, and the caller must declare
-the names it is allowed to use.
+Only names inside /tmp/jiritsu are touched; the caller declares which names it
+may use.
 
 Transport sequence (same one PMCA-RE documents for this body):
     MscContext + VendorSpecificContext -> listDevices
