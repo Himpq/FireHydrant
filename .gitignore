@@ -34,6 +34,13 @@ fl2_fl3/*.delta
 fl2_fl3/*.py
 fl2_fl3/*.h
 
+# Cine EI package artifacts (never publish)
+cine_ei/images/
+cine_ei/modules/
+cine_ei/tables/
+cine_ei/tools/
+cine_ei/backup/
+
 # OS / editors
 .DS_Store
 Thumbs.db
