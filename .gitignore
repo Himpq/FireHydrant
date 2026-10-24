@@ -41,6 +41,9 @@ cine_ei/tables/
 cine_ei/tools/
 cine_ei/backup/
 
+# WBI tool build output (compiled payloads stay local)
+wbi/build/
+
 # OS / editors
 .DS_Store
 Thumbs.db
