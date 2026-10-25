@@ -28,11 +28,6 @@ VARIANTS = [
     (215, "apfl23", "rampatch_apfl23.so"),
 ]
 
-# Sources with their own entry point and no PATCH_APPLY switch.
-STANDALONE = [
-    ("cpdelta.c", "rampatch_cpdelta.so"),
-]
-
 CANDIDATES = [
     os.environ.get("CLANG"),
     r"C:\Program Files\LLVM\bin\clang.exe",
@@ -88,9 +83,6 @@ def main(argv: list[str]) -> int:
                        [f"-DPATCH_APPLY={apply_id}", f'-DMODE_NAME="{name}"'],
                        HERE / "jiritsu_module.c", out_name)
         print(f"  {out_name:<28} {p.stat().st_size:6d} B  (PATCH_APPLY={apply_id})")
-    for src, out_name in STANDALONE:
-        p = compile_to(clang, [], HERE / src, out_name)
-        print(f"  {out_name:<28} {p.stat().st_size:6d} B  ({src})")
     print(f"output: {OUT}")
     return 0
 

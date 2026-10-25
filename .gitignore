@@ -42,7 +42,8 @@ cine_ei/tools/
 cine_ei/backup/
 
 # WBI tool build output (compiled payloads stay local)
-fl2_fl3/tools/build/
+wbi/build/
+fl2_fl3/delta/build/
 
 # Local clone of the USB stack used by the host scripts
 fl2_fl3/pmca-re/

@@ -44,6 +44,7 @@ def _add_pmca_to_path() -> None:
         os.path.join(here, "pmca-re"),
         os.path.join(here, "..", "pmca-re"),
         os.path.join(here, "..", "..", "pmca-re"),
+        os.path.join(here, "..", "..", "fl2_fl3", "pmca-re"),
     ]
     for p in candidates:
         if p and os.path.isdir(os.path.join(p, "pmca")):
