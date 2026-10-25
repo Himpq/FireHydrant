@@ -6,7 +6,7 @@ Sony ILCE-6700，固件 2.00。把 Cine EI 永久写入 `/usr/lib/appFw.so`，�
 具体补丁、模块、刷机与回退见 `docs/FIRMWARE_AND_FLASH_REPORT_2026-10-25.md`，落点细节见
 `docs/CINEEI_PATCH_DETAILS_2026-10-25.md`。
 
-> 下表中标「本地」的条目不在仓库里。清头工具见 [`wbi/`](../../wbi/)。
+> 下表中标「本地」的条目不在仓库里。清头工具见 [`fl2_fl3/tools/`](../../fl2_fl3/tools/)。
 
 ## 目录
 

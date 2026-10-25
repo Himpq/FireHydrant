@@ -5,9 +5,8 @@ A6700 固件研究笔记。
 ## 目录
 
 - [`DEVICE_CHANNEL.md`](DEVICE_CHANNEL.md) —— 相机通道与内存访问
-- [`fl2_fl3/`](fl2_fl3/) —— FL2/FL3 滤镜刷入
+- [`fl2_fl3/`](fl2_fl3/) —— FL2/FL3 滤镜刷入，含 [写入与清零工具](fl2_fl3/tools/)
 - [`cine_ei/`](cine_ei/) —— Cine EI 固化
-- [`wbi/`](wbi/) —— Jiritsu 模块：快照头、AP 程序头、CP delta
 
 ## 参考项目
 

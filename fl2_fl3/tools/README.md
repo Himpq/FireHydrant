@@ -9,7 +9,7 @@
 ## 目录
 
 ```
-wbi/
+fl2_fl3/tools/
 ├─ native/
 │  ├─ jiritsu_module.c        骨架：syscall、输出缓冲、_init 入口
 │  ├─ wbi_hdr_block.c         211 只读：88 B 头 + 分区采样

@@ -1,6 +1,6 @@
 # A6700 FL2/FL3 滤镜刷入
 
-把 FL2 / FL3 两套 Creative Look 接到 A6700 的成像链上。落点、窗口长度与窗口内指令见 [FL2/FL3 落点与验收细节](FL23_DETAILS_2026-10-25.md)。
+把 FL2 / FL3 两套 Creative Look 接到 A6700 的成像链上。落点、窗口长度与窗口内指令见 [FL2/FL3 落点与验收细节](FL23_DETAILS_2026-10-25.md)；写入、清零与 delta 工具在 [tools/](tools/)。
 
 ---
 
