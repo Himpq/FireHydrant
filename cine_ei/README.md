@@ -31,6 +31,10 @@ Log shooting 行的能力列、可用性字节、项目状态。改完菜单出�
 
 两份不一致时，菜单能选、计算仍按旧基准，表现是选值无效或黑屏。
 
+## 运行期补丁
+
+菜单、Base ISO / 曝光指数面板和 HIGH 档有对应的 RAM 补丁，不改 `appFw.so`。Step 0–8 的流程见 [rampatch/README.md](rampatch/README.md)，落点和替换字见 [rampatch/OFFSETS_2026-10-25.md](rampatch/OFFSETS_2026-10-25.md)。
+
 ## 顺序
 
 按菜单、面板、基准的次序做，每步单独验证。
