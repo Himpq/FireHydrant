@@ -28,6 +28,11 @@ VARIANTS = [
     (215, "apfl23", "rampatch_apfl23.so"),
 ]
 
+# Sources with their own entry point and no PATCH_APPLY switch.
+STANDALONE = [
+    ("cpdelta.c", "rampatch_cpdelta.so"),
+]
+
 CANDIDATES = [
     os.environ.get("CLANG"),
     r"C:\Program Files\LLVM\bin\clang.exe",
@@ -48,19 +53,19 @@ def find_clang(explicit: str | None) -> str:
     raise SystemExit("no clang found; pass --clang or set CLANG")
 
 
-def build(clang: str, apply_id: int, name: str, out_name: str) -> pathlib.Path:
+FLAGS = [
+    "--target=aarch64-linux-gnu", "-fuse-ld=lld", "-O2", "-fPIC",
+    "-ffreestanding", "-fno-builtin", "-fno-stack-protector",
+    "-fvisibility=hidden", "-nostdlib", "-shared",
+    "-Wl,-init,_init", "-Wl,-z,defs", "-Wl,--no-undefined",
+    "-Wl,--build-id=none",
+]
+
+
+def compile_to(clang: str, extra: list[str], src: pathlib.Path, out_name: str) -> pathlib.Path:
     OUT.mkdir(parents=True, exist_ok=True)
     target = OUT / out_name
-    cmd = [
-        clang, "--target=aarch64-linux-gnu", "-fuse-ld=lld", "-O2", "-fPIC",
-        "-ffreestanding", "-fno-builtin", "-fno-stack-protector",
-        "-fvisibility=hidden", "-nostdlib", "-shared",
-        "-Wl,-init,_init", "-Wl,-z,defs", "-Wl,--no-undefined",
-        "-Wl,--build-id=none",
-        f"-DPATCH_APPLY={apply_id}", f'-DMODE_NAME="{name}"',
-        "-I", str(HERE),
-        str(HERE / "jiritsu_module.c"), "-o", str(target),
-    ]
+    cmd = [clang, *FLAGS, *extra, "-I", str(HERE), str(src), "-o", str(target)]
     result = subprocess.run(cmd, text=True, capture_output=True)
     if result.returncode:
         print("compile failed:", " ".join(cmd), file=sys.stderr)
@@ -79,8 +84,13 @@ def main(argv: list[str]) -> int:
     clang = find_clang(args.clang)
     print(f"clang : {clang}")
     for apply_id, name, out_name in VARIANTS:
-        p = build(clang, apply_id, name, out_name)
+        p = compile_to(clang,
+                       [f"-DPATCH_APPLY={apply_id}", f'-DMODE_NAME="{name}"'],
+                       HERE / "jiritsu_module.c", out_name)
         print(f"  {out_name:<28} {p.stat().st_size:6d} B  (PATCH_APPLY={apply_id})")
+    for src, out_name in STANDALONE:
+        p = compile_to(clang, [], HERE / src, out_name)
+        print(f"  {out_name:<28} {p.stat().st_size:6d} B  ({src})")
     print(f"output: {OUT}")
     return 0
 

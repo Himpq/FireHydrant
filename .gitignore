@@ -44,6 +44,9 @@ cine_ei/backup/
 # WBI tool build output (compiled payloads stay local)
 wbi/build/
 
+# Local clone of the USB stack used by the host scripts
+fl2_fl3/pmca-re/
+
 # OS / editors
 .DS_Store
 Thumbs.db
