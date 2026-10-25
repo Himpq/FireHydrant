@@ -25,6 +25,7 @@ VARIANTS = [
     (212, "wbirewrite", "rampatch_wbirewrite.so"),
     (213, "wbiclear", "rampatch_wbiclear.so"),
     (214, "wbirestore", "rampatch_wbirestore.so"),
+    (215, "apfl23", "rampatch_apfl23.so"),
 ]
 
 CANDIDATES = [

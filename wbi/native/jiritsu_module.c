@@ -103,6 +103,8 @@ __attribute__((visibility("default"))) void _init(void) {
 #include "wbi_clear_block.c"
 #elif PATCH_APPLY == 214
 #include "wbi_restore_block.c"
+#elif PATCH_APPLY == 215
+#include "ap_fl23_revert_block.c"
 #else
     ps("RESULT=NO_BLOCK\nnote=no block compiled in\n");
     goto emit;
