@@ -27,19 +27,74 @@ USB 枚举 → 识别相机（大容量存储类身份）
 
 ## 3. 模块加载
 
-```
-1) 写入 /tmp/jiritsu 下的暂存文件   → 模块字节
-2) 读回并校验哈希                   → 不一致则中止
-3) 写入 /tmp/jiritsu/libJit.so      → 触发点
-4) 固件 dlopen 该路径               → 模块入口执行
-5) 模块写入结果文件
-6) 主机读回结果
+### 3.1 固件侧实现
+
+入口在 `/lib/libJiritsu.so`（A6700 `nflasha15` 中 inode 24547，233,416 字节；其中的字符串按 `VA = 文件偏移` 排布）：
+
+```text
+0x33d01  [JIT] jit_thread B.
+0x33e67  [JIT] ramdisk_mount B. / E.
+0x33e7f  [JIT] libJit_so copy B.
+0x33e98  /tmp/jiritsu/ramdsk_libJit/libJit.so      ← 实际被 dlopen 的副本
+0x33f05  [JIT] libJit_so dll open B.
+0x33f22  dlopen err pErr
+0x33f4f  [JIT] libJit_so method load CreateScriptI B.
+0x33f7d  CreateScriptI
+0x33f8b  sym create err pErr
+0x33fcd  [JIT] libJit_so method run CreateScriptI B.
+0x34027  [JIT] libJit_so method load LoadScriptI B.
+0x3409d  [JIT] jmode open B.
 ```
 
-模块为 AArch64 共享对象，以 `-shared -nostdlib` 构建，仅保留入口函数，不链接运行库，读写通过裸系统调用完成。现有主机接口限制单次上传不超过 65,536 字节，这不等于底层文件大小上限；已验证模块通常为数十 KB。
+流程：
 
-- `libJit.so` 是服务使用的固定触发路径；写入前需归档已有文件，使用后清理本次模块，避免替换其他实验；
-- 本机已确认残留文件会跨完整断电保留。文件保留与自动执行是两件事，本轮冷启动未触发留置探针；后续显式加载仍需防止旧请求被重放。
+```text
+1) 收包，挂载 RAM_DISK
+2) 把 /tmp/jiritsu/libJit.so 复制到 /tmp/jiritsu/ramdsk_libJit/libJit.so
+3) dlopen 该副本
+4) dlsym("CreateScriptI") 并调用；随后可选 dlsym("LoadScriptI")
+5) jmode open
+```
+
+模块为 AArch64 共享对象，以 `-shared -nostdlib -fPIC -Wl,-init,_init` 构建，入口为 `_init`，不链接运行库，读写通过裸系统调用完成。主机接口单次上传上限 65,536 字节。
+
+- 没有 `CreateScriptI` 时加载器记录 `sym create err pErr` 后继续，入口 `_init` 已经执行完毕，属正常情况；
+- `libJit.so` 是服务的固定触发路径，写入前归档已有文件，使用后清理本次模块；
+- 残留文件会跨完整断电保留；文件保留与自动执行是两件事，冷启动不会自动执行留置的模块。
+
+### 3.2 传输：一次会话完成
+
+推荐在一次认证会话内完成全部步骤：
+
+```text
+with Session() as s:
+    prior = s.read("libJit.so", missing=True)      # 归档旧触发
+    s.temp("stage.so", blob)                       # 暂存
+    assert s.read("stage.so") == blob              # 回读校验
+    s.temp("libJit.so", blob)                      # 触发（写调用会返回）
+    for _ in range(120):                           # 同一会话内轮询
+        raw = s.read("result", missing=True)
+        if raw: break
+        sleep(0.25)
+    s.temp("libJit.so", remove=True)               # 清理本次文件
+    s.temp("stage.so", remove=True)
+```
+
+实测：`apply`、`status`、`reset`、`forceundo` 四个操作连续执行，appFw 的 `pid` 与 `appfw_base` 全程不变，说明触发写不会重启进程，同一会话可以继续读结果。写触发后相机离开 MSC、显示回放界面、再回到 MSC，期间个别读请求会返回认证错误，重试即可。
+
+若把触发写放在独立子进程并在超时后终止该进程，主机会在服务处理期间断开 USB 句柄，相机可能停在回放界面并需要手动断电。
+
+### 3.3 结果文件
+
+结果写在 `/tmp/jiritsu/<name>.result`，主机用 `s.read("<name>.result")` 读取。
+
+若把结果写到 `/tmp` 根目录再用 `/tmp/jiritsu/../../tmp/...` 回退读取，路径本身仍然可读，但文件离开了服务的工作目录，归档、清理与路径前缀检查需要单独处理。
+
+同一路径被重复打开写入（例如每个阶段写一次进度标记）时，每次都会新建一次服务调用；单次收尾写入更简单。
+
+### 3.4 清理
+
+只删除本次写入的文件，删除前比对内容，避免误删其他实验留下的模块。`/tmp/jiritsu` 位于 flash 分区，断电不会清除，需要显式删除。
 
 ## 4. 文件读取
 
