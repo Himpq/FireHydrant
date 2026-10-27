@@ -9,11 +9,24 @@ A6700 固件研究笔记。
 - [`cine_ei/`](cine_ei/) —— Cine EI 固化与运行期补丁
 - [`wbi/`](wbi/) —— 清头与 AP 程序头工具
 
+## 进度
+- ISP 处理帧与视频规格研究
+- CP RAM 读取
+
+## Already Done
+- 伽马
+- 自定义滤镜刷入
+- CineEI 链路 RAM Patch & 固化
+- AP Flash 清头重载
+- 超采样函数
+
 ## 参考项目
 
 | 项目 | 用途 |
 |---|---|
 | [`ma1co/fwtool.py`](https://github.com/ma1co/fwtool.py) | 固件镜像解包（FDAT 解密、分区与文件系统提取） |
-| `pmca-re` | 索尼相机 USB/PTP 会话与鉴权链 |
+| [`pmca-re`](https://github.com/ma1co/Sony-PMCA-RE/) | 索尼相机 USB/PTP 会话与鉴权链 |
 | [`YuuLuo/a7c2-service-preload`](https://github.com/YuuLuo/a7c2-service-preload) | Jiritsu 通道与 `libJit.so` 加载入口（CC BY-SA 4.0） |
-| `MDHan/a7c2-fl23-macos` | A7C II FL2/FL3 工具链前端与流程记录 |
+| [`MDHan/a7c2-fl23-macos`](https://github.com/MDHan/a7c2-fl23-macos) | A7C II FL2/FL3 工具链前端与流程记录 |
+
+
