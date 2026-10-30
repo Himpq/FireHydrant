@@ -8,13 +8,14 @@ A6700 固件研究笔记。
 - [`fl2_fl3/`](fl2_fl3/) —— FL2/FL3 滤镜刷入与 [delta 工具](fl2_fl3/delta/)
 - [`cine_ei/`](cine_ei/) —— Cine EI 固化与运行期补丁
 - [`wbi/`](wbi/) —— 清头与 AP 程序头工具
+- [`ai_af/`](ai_af/) —— a6700 AI 对焦模块 ONNX (not yet released)
 - [`isp/`](isp/) —— 索尼 av-cam ISP 固件研究 (not yet released)
 - [`upm/`](upm/) —— UPM 相机电源管理模块研究 (not yet released)
 - ...
 
 ## Ongoing
-- ISP 处理帧与视频规格研究
-- 1080P & 4K 超采信号
+- 1080P 超采
+- AI 对焦模块
 
 ## Already Done
 - 伽马
@@ -23,6 +24,7 @@ A6700 固件研究笔记。
 - AP Flash 清头重载
 - 超采样函数
 - CP RAM 读取
+- ISP 处理帧与视频规格研究
 
 ## 参考项目
 
