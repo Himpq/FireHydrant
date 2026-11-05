@@ -11,20 +11,18 @@ A6700 固件研究笔记。
 - [`upm/`](upm/) —— UPM 读模式语义与 `/sabin` PSF 表
 - [`ai_af/`](ai_af/) —— a6700 AI 对焦模块 ONNX (not yet released)
 - [`isp/`](isp/) —— 索尼 av-cam ISP 固件研究 (not yet released)
+- [`1080p_binning`](1080p_binning) —— 1080p  超采样
 - ...
 
 ## Ongoing
-- 1080P 超采
-- AI 对焦模块
+- OpenGate
+- AI 对焦权重 ONNX化
 
 ## Already Done
-- 伽马
-- 自定义滤镜刷入
-- CineEI 链路 RAM Patch & 固化
-- AP Flash 清头重载
-- 超采样函数
-- CP RAM 读取
-- ISP 处理帧与视频规格研究
+- 图像伽马曲线
+- 自定义滤镜刷入 ( FL2 & FL3 )
+- CineEI
+- 1080p 超采样
 
 ## 参考项目
 
