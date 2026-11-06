@@ -1,0 +1,15 @@
+# ai_af 目录自身的忽略规则（合并进 FireHydrant 时放在 ai_af/.gitignore）
+# 权重 / 容器 / 模型 / 样本永不入库
+*.nab
+*.nb
+*.onnx
+*.npz
+*.npy
+*.bin
+*.img
+*.so
+*.pyc
+
+# 本地研究产物
+__pycache__/
+# 本地导出的模型元数据：按需在此补充具体文件名，不要提交
