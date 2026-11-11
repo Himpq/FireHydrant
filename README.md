@@ -11,7 +11,8 @@ A6700 固件研究笔记。
 - [`upm/`](upm/) —— UPM 读模式语义与 `/sabin` PSF 表
 - [`ai_af/`](ai_af/) —— a6700 AI 对焦研究
 - [`isp/`](isp/) —— 索尼 av-cam ISP 固件研究 (not yet released)
-- [`1080p_binning`](1080p_binning) —— 1080p  超采样 (not yet released)
+- [`1080p_binning/`](1080p_binning) —— 1080p  超采样 (not yet released)
+- [`bypass_sd_limit/`](bypass_sd_limit) —— 卡速限制绕过 (not yet released)
 - ...
 
 ## Ongoing
@@ -23,6 +24,7 @@ A6700 固件研究笔记。
 - 自定义滤镜刷入 ( FL2 & FL3 )
 - CineEI
 - 1080p 超采样
+- 绕过卡速
 
 ## 参考项目
 
