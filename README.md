@@ -2,6 +2,8 @@
 
 A6700 固件研究笔记。
 
+模块发布与刷写：[Himpq/Pilot](https://github.com/Himpq/Pilot)。
+
 ## 目录
 
 - [`DEVICE_CHANNEL.md`](DEVICE_CHANNEL.md) —— 相机通道与内存访问
