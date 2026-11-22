@@ -20,6 +20,7 @@ A6700 固件研究笔记。
 - OpenGate
 
 ## Already Done
+- 6K30
 - 图像伽马曲线
 - 自定义滤镜刷入 ( FL2 & FL3 )
 - CineEI
@@ -35,3 +36,5 @@ A6700 固件研究笔记。
 | [`pmca-re`](https://github.com/ma1co/Sony-PMCA-RE/) | 索尼相机 USB/PTP 会话与鉴权链 |
 | [`YuuLuo/a7c2-service-preload`](https://github.com/YuuLuo/a7c2-service-preload) | Jiritsu 通道与 `libJit.so` 加载入口（CC BY-SA 4.0） |
 | [`MDHan/a7c2-fl23-macos`](https://github.com/MDHan/a7c2-fl23-macos) | A7C II FL2/FL3 工具链前端与流程记录 |
+| [`ArcaneLantern/a7iv-open-gate-test`](https://github.com/ArcaneLantern/a7iv-open-gate-test) | A7 IV OpenGate 与 5.7K 录制研究、Jiritsu 运行期补丁 |
+
