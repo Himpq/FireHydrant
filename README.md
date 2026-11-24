@@ -27,7 +27,7 @@ A6700 固件研究笔记。
 - CineEI
 - 1080p 超采样
 - 绕过卡速
-- 3K OpenGate
+- 2K OpenGate
 
 
 ## 参考项目
