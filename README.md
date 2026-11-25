@@ -18,8 +18,8 @@ A6700 固件研究笔记。
 - ...
 
 ## Ongoing
-- Menu UI & Canvas
-
+- None
+  
 ## Already Done
 - 6K30
 - 图像伽马曲线
@@ -29,6 +29,14 @@ A6700 固件研究笔记。
 - 绕过卡速
 - 2K OpenGate
 
+## 已完成模块
+- 波形图  
+  <img width="400" alt="image" src="https://github.com/user-attachments/assets/99cf1ee6-1e0a-4090-a3fa-3500fa75d665" />
+- 6K、OpenGate、1080p超采热切换  
+  <img width="400" alt="image" src="https://github.com/user-attachments/assets/73f2e908-f39b-46e0-876b-f29020ea20ff" />
+
+  
+参见Pilot
 
 ## 参考项目
 
