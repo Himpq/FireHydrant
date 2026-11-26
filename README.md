@@ -15,7 +15,6 @@ A6700 固件研究笔记。
 - [`bypass_sd_limit/`](bypass_sd_limit/) —— 卡速限制绕过
 - [`1080p_binning/`](1080p_binning) —— 1080p 超采样
 - [`isp/`](isp/) —— 索尼 av-cam ISP 固件研究 (not yet released)
-- ...
 
 ## Ongoing
 - None
@@ -28,6 +27,7 @@ A6700 固件研究笔记。
 - 1080p 超采样
 - 绕过卡速
 - 2K OpenGate
+- 5.7K & 4K OpenGate Test [`https://github.com/ArcaneLantern/a6700-open-gate-test`](ArcaneLantern/a6700-opengate-test)
 
 ## 已完成模块
 - 波形图  
@@ -47,4 +47,5 @@ A6700 固件研究笔记。
 | [`YuuLuo/a7c2-service-preload`](https://github.com/YuuLuo/a7c2-service-preload) | Jiritsu 通道与 `libJit.so` 加载入口（CC BY-SA 4.0） |
 | [`MDHan/a7c2-fl23-macos`](https://github.com/MDHan/a7c2-fl23-macos) | A7C II FL2/FL3 工具链前端与流程记录 |
 | *[`ArcaneLantern/a7iv-open-gate-test`](https://github.com/ArcaneLantern/a7iv-open-gate-test) | A7 IV OpenGate 与 5.7K 录制研究、Jiritsu 运行期补丁 |
+| *[`https://github.com/ArcaneLantern/a6700-open-gate-test`](ArcaneLantern/a6700-opengate-test) | a6700 5.7K & 4K Opengate |
 
